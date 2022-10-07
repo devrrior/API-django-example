@@ -10,7 +10,7 @@ class UserCreate(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 class UserValidate(APIView):
-    def get(self, request):
+    def post(self, request):
         serializer = UserValidateSerializer(data=request.data)
 
         if serializer.is_valid():
