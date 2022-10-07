@@ -10,6 +10,12 @@ class UserCreate(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 class UserValidate(APIView):
+
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request):
         serializer = UserValidateSerializer(data=request.data)
 
