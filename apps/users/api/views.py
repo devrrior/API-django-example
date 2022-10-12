@@ -6,15 +6,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-class UserCreate(generics.CreateAPIView):
+class UserListCreate(generics.ListCreateAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class UserValidate(APIView):
-
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = UserValidateSerializer(data=request.data)
